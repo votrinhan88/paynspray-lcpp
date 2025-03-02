@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using GTA;
+﻿using GTA;
 using GTA.Math;
 using GTA.UI;
 
@@ -12,7 +11,7 @@ public class Main : Script
     {
         {"name",      "Pay n' Spray LCPP"},
         {"developer", "votrinhan88"},
-        {"version",   "1.0"},
+        {"version",   "1.1"},
         {"iniPath",   @"scripts\PaynSprayLCPP.ini"}
     };
     private static readonly Dictionary<string, Dictionary<string, object>> defaultSettingsDict = new Dictionary<string, Dictionary<string, object>>
@@ -21,13 +20,13 @@ public class Main : Script
             "SETTINGS", new Dictionary<string, object>
             {
                 {"verbose",  Verbosity.WARNING},
-                {"Interval", 500},
+                {"Interval", 1000},
             }
         },
         {
             "PARAMETERS", new Dictionary<string, object>
             {
-                {"distance",       12.0f},
+                {"distance",       10.0f},
                 {"costMultiplier", 1.0f},
             }
         },
@@ -37,7 +36,7 @@ public class Main : Script
                 {"Boats",           30000},
                 {"Commercial",       4000},
                 {"Compacts",         1500},
-                {"Coupes",           1750},
+                {"Coupes",           3000},
                 {"Cycles",            200},
                 {"Emergency",       10000},
                 {"Helicopters",     50000},
@@ -62,11 +61,11 @@ public class Main : Script
         }
     };
     private static readonly Vector3[] locationsShops = new Vector3[5] {
-        new Vector3(4880.41f, -1716.87f, 19.84f),   // Frankfort Avenue, Northwood, Algonquin
-        new Vector3(4674.51f, -2889.68f,  6.02f),   // West Way, Purgatory, Algonquin
-        new Vector3(6246.37f, -3555.75f, 20.89f),   // Gibson Street, Outlook, Broker
-        new Vector3(4040.26f, -2078.96f, 16.57f),   // Panhandle Road, Leftwood, Alderney ()
-        new Vector3(3887.98f, -2981.69f, 10.33f)    // Corner of  (Axel's Pay 'N' Spray)
+        new Vector3(4880.41f, -1716.87f, 19.84f),
+        new Vector3(4674.51f, -2889.68f,  6.02f),
+        new Vector3(6246.37f, -3555.75f, 20.89f),
+        new Vector3(4040.26f, -2078.96f, 16.57f),
+        new Vector3(3887.98f, -2981.69f, 10.33f)
     };
     private static readonly string[] namesShops = new string[5] {
         "~b~Pay n' Spray~w~ at Frankfort Avenue, Northwood, Algonquin",
@@ -102,8 +101,7 @@ public class Main : Script
         }
 
         Tick += OnTick;
-        KeyDown += OnKeyDown;
-        Interval = settings.GetValue("SETTINGS", "interval", (int)defaultSettingsDict["SETTINGS"]["Interval"]);
+        Interval = settings.GetValue("SETTINGS", "Interval", (int)defaultSettingsDict["SETTINGS"]["Interval"]);
     }
 
     // Code is ran every new frame in-game.
@@ -124,7 +122,7 @@ public class Main : Script
                     var cost = ComputeCost(playerVehicle);
                     
                     if (isPromptedHonk == false) {
-                        Notification.PostTicker($"Welcome to {namesShops[idxNearestShop]}. Hold ~y~Honk~w~ to pay n' spray for $~g~{cost}~W~.", true);
+                        Notification.PostTicker($"Welcome to {namesShops[idxNearestShop]}. Hold ~y~Honk~w~ to pay n' spray for ~g~${cost}~W~.", true);
                         isPromptedHonk = true;
                     }
                     
@@ -136,18 +134,6 @@ public class Main : Script
             else {
                 isPromptedHonk = false;
                 isFixed = false;
-            }
-        }
-    }
-    // Code is ran only when a certain key is pressed down.
-    private void OnKeyDown(object sender, KeyEventArgs e)
-    {
-        if (settings.GetValue("SETTINGS", "verbose", 0) >= 1)
-        {
-            if (e.KeyCode == Keys.F9)
-            {
-                DevUtils.PrintSettings(settings);
-                DevUtils.PrintPosition();
             }
         }
     }
@@ -176,9 +162,9 @@ public class Main : Script
             vehicle.Wash();
             Game.Player.Money -= cost;
             isFixed = true;
-            Notification.PostTicker($"Sprayed n' payed $~g~{cost}~W~.", true);
+            Notification.PostTicker($"Sprayed n' payed ~g~${cost}~W~.", true);
         } else {
-            Notification.PostTicker($"You don't have enough $~g~{cost}~W~.", true);
+            Notification.PostTicker($"You don't have enough ~g~${cost}~W~.", true);
         }
     }
 
