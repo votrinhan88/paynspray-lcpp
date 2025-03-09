@@ -1,11 +1,12 @@
 <b>paynspray-lcpp</b>
-<b>Pay n' Spray Mod for GTA V LCPP</b> | v1.1 | <a href="https://github.com/votrinhan88/paynspray-lcpp">GitHub</a>
+<b>Pay n' Spray Mod for GTA V LCPP</b> | v1.2 | <a href="https://github.com/votrinhan88/paynspray-lcpp">GitHub</a>
 
 <b>Features</b>
 Add lore-friendly Pay n' Spray shops for GTA V Liberty City Preservation Project (LCPP).
 + No more having to use trainer and break immersion.
 + Pay n' Spray locations are exactly as the default markers by LCPP.
-+ Realistic price, also customizable via by vehicle class and a global multiplier the .ini file.
++ Spray smoke and engine revs when using service.
++ Realistic price, also customizable via by vehicle class and a global multiplier the .ini file. Set verbose = 3 if you want more messages.
 + Five shops:
 ____+ <b>Pay n' Spray</b> at Frankfort Avenue, Northwood, Algonquin
 ____+ <b>Pay n' Spray</b> at West Way, Purgatory, Algonquin
@@ -14,12 +15,20 @@ ____+ <b>Axel's Pay 'N' Spray</b> at Panhandle Road, Leftwood, Alderney
 ____+ <b>Axel's Pay 'N' Spray</b> at Roebuck Road & Hardtack Avenue, Port Tudor, Alderney
 
 <b>Installation</b>
-1. Requires the latest version of SHVDN-nightly ≥ v3.7.0-nightly.16.
-2. Put `PaynSprayLCPP.dll` and `PaynSprayLCPP.pcb` in `GTA V/scripts/`.
-3. The `PaynSprayLCPP.ini` settings file will be automatically generated after the first run.
+1. Requires the latest version of SHVDN-nightly ≥ v3.6.0-nightly.142.
+2. Put `PaynSprayLCPP.dll`, `PaynSprayLCPP.pcb`, and `PaynSprayLCPP.ini` in `GTA V/scripts/`.
+3. The `PaynSprayLCPP.ini` settings file will be automatically generated again if deleted.
 
 <b>Uninstallation</b>
 1. Delete `PaynSprayLCPP.dll` and `PaynSprayLCPP.pcb` in `GTA V/scripts/`.
+
+<b>Changelog</b>
++ v1.2:
+____+ Add changing vehicle color
+____+ Add smoke effect (same color to vehicle)
+____+ Add engine rev sound effect
+____+ Add .ini file
+____+ Downgrade SHVDN (no changes needed)
 
 <b>Disclaimer</b>
 + Do not upload elsewhere. Do not used for commercial, financial, or personal gain.
