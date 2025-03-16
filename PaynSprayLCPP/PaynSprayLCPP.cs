@@ -134,8 +134,8 @@ public class PaynSprayLCPP : Script
 
     private void OnTick(object sender, EventArgs e)
     {
-        ShowDebugInfo();
-
+        if ((int)this.settings["SETTINGS"]["verbose"] >= Verbosity.DEBUG) { ShowDebugInfo(); }
+        
         switch (modState)
         {
             case ModState.Unknown:
