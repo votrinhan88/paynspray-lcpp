@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+PaynSprayLCPP/libs/ScriptHookVDotNet3.dll
+ScriptHookVDotNet2.xml
+ScriptHookVDotNet3.xml
