@@ -10,7 +10,7 @@ public class PaynSprayLCPP : Script
     {
         {"name",      "Pay n' Spray LCPP"},
         {"developer", "votrinhan88"},
-        {"version",   "1.2"},
+        {"version",   "1.3"},
         {"iniPath",   @"scripts\PaynSprayLCPP.ini"}
     };
     private static readonly Dictionary<string, Dictionary<string, object>> defaultSettingsDict = new Dictionary<string, Dictionary<string, object>>
@@ -18,8 +18,9 @@ public class PaynSprayLCPP : Script
         {
             "SETTINGS", new Dictionary<string, object>
             {
-                {"verbose",  Verbosity.WARNING},
-                {"Interval", 1000},
+                {"verbose",     Verbosity.WARNING},
+                {"Interval",    1000},
+                {"clearWanted", true},
             }
         },
         {
@@ -241,6 +242,14 @@ public class PaynSprayLCPP : Script
         // Check: Horn pressed for any action
         if (!Game.IsControlPressed(Control.VehicleHorn)) { return ModState.ReadyForService; }
 
+        // Check: Player is not seen (if wanted)
+        bool sneakyService = (Game.Player.WantedLevel > 0);
+        if (sneakyService & !Game.Player.AreWantedStarsGrayedOut)
+        {
+            Notification.PostTicker($"Can't pay n' spray vehicle in pursuit!", true);
+            return ModState.ReadyForService;
+        }
+
         // Check: Player has enough money
         int money = Game.Player.Money;
         if (money < this.cost)
@@ -255,6 +264,15 @@ public class PaynSprayLCPP : Script
         // Fix and wash
         vehicle.Repair();
         vehicle.Wash();
+        if (sneakyService)
+        {
+            vehicle.IsWanted = false;
+        }
+        // Clear player's wanted level
+        if ((bool)this.settings["SETTINGS"]["clearWanted"])
+        {
+            Game.Player.WantedLevel = 0;
+        }
 
         // Change color
         int colorComb = GetDifferentRandom(0, vehicle.Mods.ColorCombinationCount, vehicle.Mods.ColorCombination);

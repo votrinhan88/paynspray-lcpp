@@ -1,13 +1,12 @@
 # paynspray-lcpp
-**Pay n' Spray Mod for GTA V LCPP** | v1.2 | [gta5-mods.com](https://www.gta5-mods.com/scripts/pay-n-spray-lcpp)
+**Pay n' Spray Mod for GTA V LCPP** | v1.3 | [gta5-mods.com](https://www.gta5-mods.com/scripts/pay-n-spray-lcpp)
 
 ### Features
 Add lore-friendly Pay n' Spray shops for GTA V Liberty City Preservation Project (LCPP).
-+ No more having to use trainer and break immersion.
-+ Pay n' Spray locations are exactly as the default markers by LCPP.
-+ Spray smoke and engine revs when using service.
++ Service is immersively available only when player not in pursuit by police. Can optionally clear wanted level (on by default).
 + Realistic price, also customizable via by vehicle class and a global multiplier the .ini file. Set verbose = 3 if you want more messages.
-+ Five shops:
++ Spray smoke and engine revs when using service.
++ Pay n' Spray locations are exactly as the default markers by LCPP. Five shops:
     + **Pay n' Spray** at Frankfort Avenue, Northwood, Algonquin
     + **Pay n' Spray** at West Way, Purgatory, Algonquin
     + **Pay n' Spray** at Gibson Street, Outlook, Broker
@@ -23,6 +22,8 @@ Add lore-friendly Pay n' Spray shops for GTA V Liberty City Preservation Project
 1. Delete `PaynSprayLCPP.dll` and `PaynSprayLCPP.pcb` in `GTA V/scripts/`.
 
 ### Changelog
++ v1.3:
+    + Service vehicle only when not in pursuit by police.
 + v1.2:
     + Add changing vehicle color
     + Add smoke effect (same color to vehicle)
